@@ -9,37 +9,43 @@ import {actions} from "../../redux/actions/actions";
 import {weekDay} from "../../utils/common";
 
 const Home = () => {
-    const { locationKey, dailyForecast , currentConditions } = useAppData();
+    const { currentLocationKey, currentDailyForecast , currentConditions } = useAppData();
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (locationKey) {
+        if (currentLocationKey) {
             const config = {
                 params: {
                     details: false,
                     metric: false
                 }
             }
-            axios.get(`forecasts/v1/daily/5day/${locationKey}`, config)
+            axios.get(`forecasts/v1/daily/5day/${currentLocationKey}`, config)
                 .then(res => {
-                    dispatch({ type: actions.SetDailyForecast, payload: res.data.DailyForecasts })
+                    dispatch({
+                        type: actions.SetDailyForecast,
+                        payload: res.data?.DailyForecasts
+                    });
                 })
         }
-    }, [locationKey]);
+    }, [currentLocationKey]);
 
     useEffect(() => {
-        if (locationKey) {
+        if (currentLocationKey) {
             const config = {
                 params: {
                     details: true,
                 }
             }
-            axios.get(`currentconditions/v1/${locationKey}`, config)
-                .then(res => {
-                    dispatch({ type: actions.SetCurrentConditions, payload: res.data[0] })
+            axios.get(`currentconditions/v1/${currentLocationKey}`, config)
+                .then((res) => {
+                    dispatch({
+                            type: actions.SetCurrentConditions,
+                            payload: res.data[0]
+                        });
                 })
         }
-    }, [locationKey]);
+    }, [currentLocationKey]);
 
     return (
         <Layout>
@@ -61,7 +67,7 @@ const Home = () => {
                     </div>
                     <div className={styles.weather__section__center}>
                         {
-                            dailyForecast?.map(({Date: dailyDate, Temperature}) => {
+                            currentDailyForecast?.map(({Date: dailyDate, Temperature}) => {
                                 const selectedDay = weekDay[new Date(dailyDate).getDay()]
                                 const minimumTemperature = `${Temperature.Minimum.Value + Temperature.Minimum.Unit}`;
                                 const maximumTemperature = `${Temperature.Maximum.Value + Temperature.Maximum.Unit}`;

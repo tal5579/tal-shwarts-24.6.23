@@ -3,8 +3,8 @@ import {defaultLocationKey} from "../../utils/common";
 
 const initialState = {
     searchData: [],
-    dailyForecast: [],
-    locationKey: defaultLocationKey,
+    currentDailyForecast: [],
+    currentLocationKey: defaultLocationKey,
     currentConditions: [],
 };
 
@@ -20,14 +20,14 @@ export const appReducer = (state = initialState, action) => {
         case actions.SetDailyForecast: {
             return {
                 ...state,
-                dailyForecast: action.payload,
+                currentDailyForecast: action.payload,
             };
         }
 
         case actions.SetLocationKey: {
             return {
                 ...state,
-                locationKey: action.payload,
+                currentLocationKey: action.payload,
             }
         }
 

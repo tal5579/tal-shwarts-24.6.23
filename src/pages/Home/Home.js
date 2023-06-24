@@ -1,36 +1,45 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Layout from "../../components/Layout/Layout";
 import styles from "./Home.module.scss";
 import Search from "../../components/Search/Search";
+import axios from "../../utils/api/api";
+import {useDispatch} from "react-redux";
+import {useAppData} from "../../redux/selectors/selectors";
+import {actions} from "../../redux/actions/actions";
+import {weekDay} from "../../utils/common";
 
 const Home = () => {
-    const mockDate = [
-        {
-            id: 0,
-            day: "Sun",
-            degree: "30C"
-        },
-        {
-            id: 1,
-            day: "Mon",
-            degree: "31C"
-        },
-        {
-            id: 2,
-            day: "Tue",
-            degree: "32C"
-        },
-        {
-            id: 3,
-            day: "Wed",
-            degree: "33C"
-        },
-        {
-            id: 4,
-            day: "Thu",
-            degree: "34C"
-        },
-    ];
+    const { locationKey, dailyForecast , currentConditions } = useAppData();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (locationKey) {
+            const config = {
+                params: {
+                    details: false,
+                    metric: false
+                }
+            }
+            axios.get(`forecasts/v1/daily/5day/${locationKey}`, config)
+                .then(res => {
+                    dispatch({ type: actions.SetDailyForecast, payload: res.data.DailyForecasts })
+                })
+        }
+    }, [locationKey]);
+
+    useEffect(() => {
+        if (locationKey) {
+            const config = {
+                params: {
+                    details: true,
+                }
+            }
+            axios.get(`currentconditions/v1/${locationKey}`, config)
+                .then(res => {
+                    dispatch({ type: actions.SetCurrentConditions, payload: res.data[0] })
+                })
+        }
+    }, [locationKey]);
 
     return (
         <Layout>
@@ -41,8 +50,7 @@ const Home = () => {
                         <div className={styles.weather__section__top__left}>
                             <img src={"/images/rain.png"} alt={"Weather"}/>
                             <div className={styles.weather__section_description}>
-                                <div>Tel Aviv</div>
-                                <div>30</div>
+                                <div>{currentConditions?.Temperature?.Metric?.Value + currentConditions?.Temperature?.Metric?.Unit}</div>
                             </div>
                         </div>
                         <div className={styles.weather__section__top__right}>
@@ -53,14 +61,20 @@ const Home = () => {
                     </div>
                     <div className={styles.weather__section__center}>
                         {
-                            mockDate.map(({id, day, degree }) => {
+                            dailyForecast?.map(({Date: dailyDate, Temperature}) => {
+                                const selectedDay = weekDay[new Date(dailyDate).getDay()]
+                                const minimumTemperature = `${Temperature.Minimum.Value + Temperature.Minimum.Unit}`;
+                                const maximumTemperature = `${Temperature.Maximum.Value + Temperature.Maximum.Unit}`;
                                 return (
-                                    <div key={id} className={styles.weather__section__center__card}>
+                                    <div key={213123} className={styles.weather__section__center__card}>
                                         <div>
-                                            {day}
+                                            {selectedDay}
                                         </div>
                                         <div>
-                                            {degree}
+                                            Min: {minimumTemperature}
+                                        </div>
+                                        <div>
+                                            Max: {maximumTemperature}
                                         </div>
                                     </div>
                                 )

@@ -1,4 +1,6 @@
 export const actions = {
-    SetData: 'SetData',
-    GetData: 'GetData',
+    SetSearchData: 'SetSearchData',
+    SetLocationKey: 'SetLocationKey',
+    SetDailyForecast: 'SetDailyForecast',
+    SetCurrentConditions: 'SetCurrentConditions'
 };

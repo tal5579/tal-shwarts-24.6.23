@@ -1,14 +1,24 @@
 .container {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   flex-direction: column;
-  padding: 35px 0;
-  height: 82vh;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .weather__section {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 25px;
+  height: 90vh;
+  width: 80vw;
+
+  @media screen and (max-width: 754px) {
+    height: 100vh;
+  }
 }
 
 .weather__section__center {
@@ -17,18 +27,21 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+
+  @media screen and (max-width: 754px) {
+    flex-direction: column;
+  }
 }
 
 .weather__section__center__card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   border: 1px solid black;
-  padding: 10px;
-  width: 120px;
-  height: 110px;
-  gap: 15px;
+  padding: 50px;
+  height: 100%;
+  width: 100%;
 }
 
 .weather__section__center__card_top {

@@ -10,12 +10,6 @@ const initialState = {
 
 export const appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.SetDailyForecast: {
-            return {
-                ...state,
-                currentDailyForecast: action.payload,
-            };
-        }
 
         case actions.SetLocationKey: {
             return {
@@ -29,6 +23,13 @@ export const appReducer = (state = initialState, action) => {
                 ...state,
                 currentLocationName: action.payload,
             }
+        }
+
+        case actions.SetDailyForecast: {
+            return {
+                ...state,
+                currentDailyForecast: action.payload,
+            };
         }
 
         case actions.SetCurrentConditions: {

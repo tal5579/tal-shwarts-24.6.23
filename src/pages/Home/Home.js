@@ -11,14 +11,14 @@ import {isEmpty} from "loadsh/lang";
 import { toast } from 'react-toastify';
 
 const Home = () => {
-    const { currentLocationKey, currentLocationName, currentDailyForecast , currentConditions } = useAppData();
+    const { currentLocationKey, currentLocationName, currentUnitDegree, currentDailyForecast , currentConditions } = useAppData();
     const dispatch = useDispatch();
 
     useEffect(() => {
         const config = {
             params: {
-                details: true,
-                metric: true
+                details: 'true',
+                metric: 'true'
             }
         }
         axios.get(`forecasts/v1/daily/5day/${currentLocationKey}`, config)
@@ -36,7 +36,7 @@ const Home = () => {
     useEffect(() => {
         const config = {
             params: {
-                details: true,
+                details: 'true',
             }
         }
         axios.get(`currentconditions/v1/${currentLocationKey}`, config)
@@ -63,13 +63,15 @@ const Home = () => {
                 id: currentLocationKey,
                 name: currentLocationName,
                 currentWeather: !isEmpty(currentConditions) ?
-                    currentConditions?.Temperature?.Metric?.Value + currentConditions?.Temperature?.Metric?.Unit :
+                    currentConditions?.Temperature[currentUnitDegree]?.Value + currentConditions?.Temperature[currentUnitDegree]?.Unit :
                     "20C",
             };
             favorites.push(favoriteData);
         }
         localStorage.setItem('favorites', JSON.stringify(favorites));
     }
+
+    console.log('currentConditions?.Temperature[currentUnitDegree]', currentConditions?.Temperature[currentUnitDegree]);
 
     return (
         <Layout>
@@ -82,7 +84,8 @@ const Home = () => {
                                 <div>{currentLocationName}</div>
                                 <div>
                                     {!isEmpty(currentConditions) ?
-                                        currentConditions?.Temperature?.Metric?.Value + currentConditions?.Temperature?.Metric?.Unit
+                                        currentConditions?.Temperature[currentUnitDegree]?.Value +
+                                        currentConditions?.Temperature[currentUnitDegree]?.Unit
                                         : "No current condition data"
                                     }
                                 </div>
@@ -98,8 +101,8 @@ const Home = () => {
                         { currentDailyForecast.length ? (
                             currentDailyForecast?.map(({Date: dailyDate, Temperature}) => {
                                 const selectedDay = weekDay[new Date(dailyDate).getDay()]
-                                const minimumTemperature = `${Temperature.Minimum.Value + Temperature.Minimum.Unit}`;
-                                const maximumTemperature = `${Temperature.Maximum.Value + Temperature.Maximum.Unit}`;
+                                const minimumTemperature = `${Temperature[currentUnitDegree]?.Minimum.Value + currentUnitDegree}`;
+                                const maximumTemperature = `${Temperature[currentUnitDegree]?.Maximum.Value + currentUnitDegree}`;
                                 return (
                                     <div key={dailyDate} className={styles.weather__section__center__card}>
                                         <div>

@@ -1,4 +1,11 @@
 .container {
-    max-width: 1600px;
     position: relative;
+    background-image: url('../../../public/images/weatherBackground.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
 }
+

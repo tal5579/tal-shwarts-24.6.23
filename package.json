@@ -1,7 +1,7 @@
 {
   "name": "tal-shwartz-24.6.23",
   "version": "0.1.0",
-  "homepage": "https://tal5579.github.io/tal-shwarts-24.6.23/",
+  "homepage": "https://tal5579.github.io/tal-shwarts-24.6.23",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.4",

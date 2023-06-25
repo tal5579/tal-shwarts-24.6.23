@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/tal-shwarts-24.6.23/static/css/main.09c8b7c8.css",
-    "main.js": "/tal-shwarts-24.6.23/static/js/main.a0cc84a2.js",
+    "main.js": "/tal-shwarts-24.6.23/static/js/main.e6fca861.js",
     "static/js/787.6b3bec02.chunk.js": "/tal-shwarts-24.6.23/static/js/787.6b3bec02.chunk.js",
     "static/media/weatherBackground.png": "/tal-shwarts-24.6.23/static/media/weatherBackground.12ba3899c36f7299b66e.png",
     "index.html": "/tal-shwarts-24.6.23/index.html",
     "main.09c8b7c8.css.map": "/tal-shwarts-24.6.23/static/css/main.09c8b7c8.css.map",
-    "main.a0cc84a2.js.map": "/tal-shwarts-24.6.23/static/js/main.a0cc84a2.js.map",
+    "main.e6fca861.js.map": "/tal-shwarts-24.6.23/static/js/main.e6fca861.js.map",
     "787.6b3bec02.chunk.js.map": "/tal-shwarts-24.6.23/static/js/787.6b3bec02.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.09c8b7c8.css",
-    "static/js/main.a0cc84a2.js"
+    "static/js/main.e6fca861.js"
   ]
 }

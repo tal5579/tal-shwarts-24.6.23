@@ -10,7 +10,7 @@ function App() {
     const store = makeStore();
     return (
       <Provider store={store}>
-          <BrowserRouter>
+          <BrowserRouter basename="/tal-shwarts-24.6.23">
               <Routes>
                   <Route exact path="/" element={<Home />} />
                   <Route path="/favorites" element={<Favorites />} />

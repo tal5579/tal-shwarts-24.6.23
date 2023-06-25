@@ -1,6 +1,6 @@
 export const actions = {
-    SetSearchData: 'SetSearchData',
     SetLocationKey: 'SetLocationKey',
+    SetLocationName: 'SetLocationName',
     SetDailyForecast: 'SetDailyForecast',
     SetCurrentConditions: 'SetCurrentConditions'
 };

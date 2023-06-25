@@ -1,22 +1,15 @@
 import { actions } from '../actions/actions';
-import {defaultLocationKey} from "../../utils/common";
+import {defaultLocationKey, defaultLocationName} from "../../utils/common";
 
 const initialState = {
-    searchData: [],
-    currentDailyForecast: [],
     currentLocationKey: defaultLocationKey,
-    currentConditions: [],
+    currentLocationName: defaultLocationName,
+    currentDailyForecast: [],
+    currentConditions: {},
 };
 
 export const appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.SetSearchData: {
-            return {
-                ...state,
-                searchData: action.payload,
-            };
-        }
-
         case actions.SetDailyForecast: {
             return {
                 ...state,
@@ -28,6 +21,13 @@ export const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentLocationKey: action.payload,
+            }
+        }
+
+        case actions.SetLocationName: {
+            return {
+                ...state,
+                currentLocationName: action.payload,
             }
         }
 

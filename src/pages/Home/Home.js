@@ -11,7 +11,7 @@ import {isEmpty} from "loadsh/lang";
 import { toast } from 'react-toastify';
 
 const Home = () => {
-    const { currentLocationKey, currentLocationName, currentUnitDegree, currentDailyForecast , currentConditions } = useAppData();
+    const { currentLocationKey, currentLocationName, currentDailyForecast , currentConditions } = useAppData();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -63,15 +63,13 @@ const Home = () => {
                 id: currentLocationKey,
                 name: currentLocationName,
                 currentWeather: !isEmpty(currentConditions) ?
-                    currentConditions?.Temperature[currentUnitDegree]?.Value + currentConditions?.Temperature[currentUnitDegree]?.Unit :
+                    currentConditions?.Temperature?.Metric?.Value + currentConditions?.Temperature?.Metric?.Unit :
                     "20C",
             };
             favorites.push(favoriteData);
         }
         localStorage.setItem('favorites', JSON.stringify(favorites));
     }
-
-    console.log('currentConditions?.Temperature[currentUnitDegree]', currentConditions?.Temperature[currentUnitDegree]);
 
     return (
         <Layout>
@@ -84,8 +82,8 @@ const Home = () => {
                                 <div>{currentLocationName}</div>
                                 <div>
                                     {!isEmpty(currentConditions) ?
-                                        currentConditions?.Temperature[currentUnitDegree]?.Value +
-                                        currentConditions?.Temperature[currentUnitDegree]?.Unit
+                                        currentConditions?.Temperature?.Metric?.Value +
+                                        currentConditions?.Temperature?.Metric?.Unit
                                         : "No current condition data"
                                     }
                                 </div>
@@ -101,8 +99,8 @@ const Home = () => {
                         { currentDailyForecast.length ? (
                             currentDailyForecast?.map(({Date: dailyDate, Temperature}) => {
                                 const selectedDay = weekDay[new Date(dailyDate).getDay()]
-                                const minimumTemperature = `${Temperature[currentUnitDegree]?.Minimum.Value + currentUnitDegree}`;
-                                const maximumTemperature = `${Temperature[currentUnitDegree]?.Maximum.Value + currentUnitDegree}`;
+                                const minimumTemperature = `${Temperature?.Minimum?.Value + Temperature?.Minimum?.Unit}`;
+                                const maximumTemperature = `${Temperature?.Maximum.Value + Temperature?.Maximum.Unit}`;
                                 return (
                                     <div key={dailyDate} className={styles.weather__section__center__card}>
                                         <div>

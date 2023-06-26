@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Search.module.scss';
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,19 +13,26 @@ import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {useAppData} from "../../redux/selectors/selectors";
+import {onlyEnglishRegExp} from "../../utils/common";
 
 const Search = () => {
     const dispatch = useDispatch();
     const { siteLightTheme } = useAppData();
+    const [textInput, setTextInput] = useState("");
     const theme = createTheme({
         palette: {
             type: siteLightTheme ? 'light' : 'dark'
         }
     });
     const onChange = (e) => {
+        const input = e.target?.value;
+        if(!onlyEnglishRegExp.test(input)){
+            toast(`Only English characters allowed`);
+            return;
+        }
         const config = {
             params: {
-                q: e.target.value,
+                q: input,
             }
         }
         axios.get('locations/v1/cities/autocomplete', config)
@@ -42,11 +49,12 @@ const Search = () => {
                 }
             })
             .catch(err => {
-                toast(`Something wrong happend: ${err.message}`)
+                toast(`Something wrong happend: ${err.message}`);
             });
     };
 
     const debounceOnChange = debounce(onChange, 500);
+
     return (
         <div className={styles.container}>
             <ThemeProvider theme={theme}>
@@ -59,9 +67,9 @@ const Search = () => {
                                     <SearchIcon />
                                 </IconButton>
                             </InputAdornment>
-                        ),
-                        onChange: (e) => debounceOnChange(e),
+                        )
                     }}
+                    onChange={debounceOnChange}
                 />
             </ThemeProvider>
         </div>

@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/tal-shwarts-24.6.23/static/css/main.09c8b7c8.css",
-    "main.js": "/tal-shwarts-24.6.23/static/js/main.ef6dc3e7.js",
+    "main.css": "/tal-shwarts-24.6.23/static/css/main.6e1d5103.css",
+    "main.js": "/tal-shwarts-24.6.23/static/js/main.cd4b8670.js",
     "static/js/787.6b3bec02.chunk.js": "/tal-shwarts-24.6.23/static/js/787.6b3bec02.chunk.js",
     "static/media/weatherBackground.png": "/tal-shwarts-24.6.23/static/media/weatherBackground.12ba3899c36f7299b66e.png",
     "index.html": "/tal-shwarts-24.6.23/index.html",
-    "main.09c8b7c8.css.map": "/tal-shwarts-24.6.23/static/css/main.09c8b7c8.css.map",
-    "main.ef6dc3e7.js.map": "/tal-shwarts-24.6.23/static/js/main.ef6dc3e7.js.map",
+    "main.6e1d5103.css.map": "/tal-shwarts-24.6.23/static/css/main.6e1d5103.css.map",
+    "main.cd4b8670.js.map": "/tal-shwarts-24.6.23/static/js/main.cd4b8670.js.map",
     "787.6b3bec02.chunk.js.map": "/tal-shwarts-24.6.23/static/js/787.6b3bec02.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.09c8b7c8.css",
-    "static/js/main.ef6dc3e7.js"
+    "static/css/main.6e1d5103.css",
+    "static/js/main.cd4b8670.js"
   ]
 }

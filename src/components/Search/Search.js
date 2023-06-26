@@ -47,7 +47,6 @@ const Search = () => {
     };
 
     const debounceOnChange = debounce(onChange, 500);
-    console.log(textInput);
     return (
         <div className={styles.container}>
             <ThemeProvider theme={theme}>

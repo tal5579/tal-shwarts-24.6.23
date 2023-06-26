@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tal-shwarts-24.6.23/static/css/main.250870b1.css",
+    "main.css": "/tal-shwarts-24.6.23/static/css/main.2b934e00.css",
     "main.js": "/tal-shwarts-24.6.23/static/js/main.1bce0231.js",
     "static/js/787.6b3bec02.chunk.js": "/tal-shwarts-24.6.23/static/js/787.6b3bec02.chunk.js",
     "index.html": "/tal-shwarts-24.6.23/index.html",
-    "main.250870b1.css.map": "/tal-shwarts-24.6.23/static/css/main.250870b1.css.map",
+    "main.2b934e00.css.map": "/tal-shwarts-24.6.23/static/css/main.2b934e00.css.map",
     "main.1bce0231.js.map": "/tal-shwarts-24.6.23/static/js/main.1bce0231.js.map",
     "787.6b3bec02.chunk.js.map": "/tal-shwarts-24.6.23/static/js/787.6b3bec02.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.250870b1.css",
+    "static/css/main.2b934e00.css",
     "static/js/main.1bce0231.js"
   ]
 }

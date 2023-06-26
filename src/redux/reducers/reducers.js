@@ -6,6 +6,7 @@ const initialState = {
     currentLocationName: defaultLocationName,
     currentDailyForecast: [],
     currentConditions: {},
+    siteLightTheme: true
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -36,6 +37,13 @@ export const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentConditions: action.payload,
+            }
+        }
+
+        case actions.SetSiteLightTheme: {
+            return {
+                ...state,
+                siteLightTheme: action.payload,
             }
         }
         

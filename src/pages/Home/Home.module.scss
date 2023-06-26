@@ -46,6 +46,8 @@
 .weather__section_description {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .weather__section__top__right {

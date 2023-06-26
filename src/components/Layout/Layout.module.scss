@@ -1,11 +1,19 @@
 .container {
     position: relative;
-    background-image: url('../../../public/images/weatherBackground.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 auto;
     height: 100%;
     width: 100%;
+}
+
+.dark {
+    background-color: #0D0D17;
+    color: white;
+}
+.light {
+    background-color: #3c7cb5;
+    color: black;
 }
 

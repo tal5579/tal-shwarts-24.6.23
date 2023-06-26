@@ -23,10 +23,12 @@ const Home = () => {
         }
         axios.get(`forecasts/v1/daily/5day/${currentLocationKey}`, config)
             .then(res => {
-                dispatch({
-                    type: actions.SetDailyForecast,
-                    payload: res?.data?.DailyForecasts
-                });
+                if (res.data) {
+                    dispatch({
+                        type: actions.SetDailyForecast,
+                        payload: res.data?.DailyForecasts
+                    });
+                }
             })
             .catch(err => {
                 toast(`Something wrong happend: ${err.message}`)
@@ -41,10 +43,12 @@ const Home = () => {
         }
         axios.get(`currentconditions/v1/${currentLocationKey}`, config)
             .then((res) => {
-                dispatch({
-                    type: actions.SetCurrentConditions,
-                    payload: res.data[0],
-                });
+                if (res.data?.length) {
+                    dispatch({
+                         type: actions.SetCurrentConditions,
+                         payload: res.data[0],
+                    });
+                }
             })
             .catch(err => {
                 toast(`Something wrong happend: ${err.message}`)
@@ -63,7 +67,7 @@ const Home = () => {
                 id: currentLocationKey,
                 name: currentLocationName,
                 currentWeather: !isEmpty(currentConditions) ?
-                    currentConditions?.Temperature?.Metric?.Value + currentConditions?.Temperature?.Metric?.Unit :
+                    currentConditions.Temperature?.Metric?.Value + currentConditions.Temperature?.Metric?.Unit :
                     "20C",
             };
             favorites.push(favoriteData);
@@ -91,7 +95,7 @@ const Home = () => {
                         </div>
                         <div className={styles.weather__section__top__right}>
                             <button onClick={addOrRemoveFromFavorites}>
-                                Add / Remove
+                                Add / Remove As Favorite
                             </button>
                         </div>
                     </div>

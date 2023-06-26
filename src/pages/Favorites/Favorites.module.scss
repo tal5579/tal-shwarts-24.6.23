@@ -17,7 +17,7 @@
   width: 80vw;
 
   @media screen and (max-width: 754px) {
-    height: 100vh;
+    height: 120vh;
   }
 }
 
@@ -38,8 +38,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  padding: 50px;
+  border: 2px solid white;
+  padding: 45px;
   height: 100%;
   width: 100%;
 }

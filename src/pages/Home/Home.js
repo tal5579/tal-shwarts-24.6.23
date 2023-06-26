@@ -69,7 +69,7 @@ const Home = () => {
             favorites.push(favoriteData);
         }
         localStorage.setItem('favorites', JSON.stringify(favorites));
-    }
+    };
 
     return (
         <Layout>
